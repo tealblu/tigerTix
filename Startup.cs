@@ -32,6 +32,8 @@ namespace tigerTix
                 endpoints.MapControllerRoute("Default",
                     "/{controller}/{action}/{id?}",
                     new { controller = "App", action = "Index" });
+
+
             });
 
             // let application know we are in dev environment
