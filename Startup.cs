@@ -27,7 +27,7 @@ namespace tigerTix
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                //endpoints.MapRazorPages();
 
                 endpoints.MapControllerRoute("Default",
                     "/{controller}/{action}/{id?}",

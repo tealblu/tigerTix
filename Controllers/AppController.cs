@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tigerTix.Controllers
 {
-    public class HomeController : Controller
+    public class AppController : Controller
     {
         public IActionResult Index()
         {
