@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tigerTix.Controllers
+namespace TigerTix.Web.ViewModels
 {
     public class AppController : Controller
     {
@@ -14,7 +14,7 @@ namespace tigerTix.Controllers
         }
 
         [HttpPost("/")]
-        public IActionResult Index(object model)
+        public IActionResult Index(IndexViewModel model)
         {
             return View();
         }
