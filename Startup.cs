@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TigerTix.Web.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace TigerTix.Web
 {
@@ -16,6 +18,13 @@ namespace TigerTix.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Database setup
+            services.AddDbContext<TigerTixContent>(cfg =>
+            {
+                cfg.UseSqlServer();
+            });
+
+            // Controller setup
             services.AddControllersWithViews();
         }
 
