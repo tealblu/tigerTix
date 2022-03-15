@@ -6,7 +6,7 @@ using TigerTix.Web.Data.Entities;
 
 namespace TigerTix.Web.Data
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         // inject tigertix context and create field to enable access
         private readonly TigerTixContext _context;
@@ -51,6 +51,13 @@ namespace TigerTix.Web.Data
         {
             _context.Remove(user);
             _context.SaveChanges();
+        }
+
+        // Save All
+        public bool SaveAll()
+        {
+            // Save changes returns the row of numbers affected
+            return _context.SaveChanges() > 0;
         }
     }
 }

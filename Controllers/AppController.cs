@@ -30,8 +30,14 @@ namespace TigerTix.Web.Controllers
         public IActionResult ShowUsers()
         {
             //LINQ Query
-            var results = from u in _context.Users select u;
+            var results = from u in _userRepository.GetAllUsers() select u;
             return View(results.ToList());
+        }
+
+        private readonly IUserRepository _userRepository;
+        public AppController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
         }
     }
 }
