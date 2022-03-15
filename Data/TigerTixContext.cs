@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace TigerTix.Web.Data
 {
-    public class TigerTixContent : DbContext
+    public class TigerTixContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
         private readonly IConfiguration _config;
 
-        public TigerTixContent (IConfiguration config)
+        public TigerTixContext (IConfiguration config)
         {
             _config = config;
         }

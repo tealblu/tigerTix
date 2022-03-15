@@ -19,7 +19,7 @@ namespace TigerTix.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Database setup
-            services.AddDbContext<TigerTixContent>(cfg =>
+            services.AddDbContext<TigerTixContext>(cfg =>
             {
                 cfg.UseSqlServer();
             });
