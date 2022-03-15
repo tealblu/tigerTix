@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace TigerTix.Web.Data
 
         private readonly IConfiguration _config;
 
-        public TigerTixContext (IConfiguration config)
+        public TigerTixContent (IConfiguration config)
         {
             _config = config;
         }
 
-        proteted override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
 
