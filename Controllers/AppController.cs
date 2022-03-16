@@ -7,6 +7,7 @@ using TigerTix.Web.Data;
 using TigerTix.Web.Data.Entities;
 using TigerTix.Web.ViewModels;
 
+
 namespace TigerTix.Web.Controllers
 {
     public class AppController : Controller
