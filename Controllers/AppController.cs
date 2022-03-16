@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TigerTix.Web.Data;
+using TigerTix.Web.Data.Entities;
 using TigerTix.Web.ViewModels;
 
 namespace TigerTix.Web.Controllers
@@ -16,12 +17,13 @@ namespace TigerTix.Web.Controllers
         }
 
         [HttpPost("/")]
-        public IActionResult Index(IndexViewModel model)
+        public IActionResult Index(User user)
         {
+            _userRepository.SaveUser(user);
+            _userRepository.SaveAll();
+
             return View();
         }
-
-        private readonly TigerTixContext _context;
 
         public IActionResult ShowUsers()
         {
