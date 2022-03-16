@@ -22,10 +22,6 @@ namespace TigerTix.Web.Controllers
         }
 
         private readonly TigerTixContext _context;
-        public AppController(TigerTixContext context)
-        {
-            _context = context;
-        }
 
         public IActionResult ShowUsers()
         {
