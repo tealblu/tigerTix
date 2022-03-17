@@ -17,6 +17,11 @@ namespace TigerTix.Web.Controllers
             return View();
         }
 
+        public IActionResult Users()
+        {
+            return View();
+        }
+
         [HttpPost("/")]
         public IActionResult Index(Event ev) 
         {
@@ -26,17 +31,12 @@ namespace TigerTix.Web.Controllers
             return View();
         }
 
-        [HttpPost("/Users")]
+        [HttpPost("/App/Users")]
         public IActionResult Users(User user)
         {
             _userRepository.SaveUser(user);
             _userRepository.SaveAll();
 
-            return View();
-        }
-
-        public IActionResult Users()
-        {
             return View();
         }
 
