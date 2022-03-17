@@ -29,6 +29,7 @@ namespace TigerTix.Web
 
             // tell application to add IUserRepository as service that uses UserRepository as implementation
             services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

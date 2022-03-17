@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Event>
+<style>
+        body {
+            background-color:lavender;
+        }
+
+</style>
+<h1>Users</h1>
+
+<u1>
+    @foreach (var u in Model)
+            {
+                <li>@u.title, @u.desc, @u.date</li>
+            }
+</u1>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,20 +24,20 @@ namespace TigerTix.Web.Data
             _context.SaveChanges();
         }
 
-        /* returns all users
-        public IEnumerable<User> GetAll()
+       //  returns all events
+        public IEnumerable<Event> GetAllEvents()
         {
-            var users = from u in _context.Users select u;
+            var events = from u in _context.Events select u;
 
-            return users.ToList();
+            return events.ToList();
         }
 
         // return a single user by ID
-        public User GetUsersByID(int userID)
+        /*public Event GetEventbyTitle(string eventTitle)
         {
-            var user = (from u in _context.Users where u.Id == userID select u).FirstOrDefault();
+            var event = (from u in _context.Events where u.title == eventTitle select u).FirstOrDefault();
 
-            return user;
+            return event;
         } */
 
         // Update a event
