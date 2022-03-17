@@ -1,32 +1,40 @@
 ﻿@model IndexViewModel
-@{ 
+@{
     ViewBag.Title = "Home Page";
 
 }
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>TigerTix: @ViewBag.Title</title>
 </head>
-    <body>
-        <h1>Hello World</h1>
+<body style="background-color:lavender;">
+    <h1>TigerTix Event Submission</h1>
 
-        <form method="post">
-            <label>Username:</label>
-            <br />
-            <input type="text" name="username" />
-            <br />
-            <label>Firstname:</label>
-            <br />
-            <input type="text" name="firstname" />
-            <br />
-            <label>Lastname:</label>
-            <br />
-            <input type="text" name="lastname" />
-            <br />
-            <input type="submit" value="Store Name" />
-        </form>
-
-
-    </body>
+    <form method="post">
+        <label>Event Title:</label>
+        <br />
+        <input type="text" name="title" />
+        <br /> <br />
+        <label>Description:</label>
+        <br />
+        <input type="text" name="desc" size=100 />
+        <br /> <br />
+        <label>Date:</label>
+        <br />
+        <input type="date" name="date" />
+        <br /> <br />
+        <label>Venue:</label>
+        <br />
+        <select name="venue" id="venues">
+            <option value="memstad">Memorial Stadium</option>
+            <option value="liljohn">Littlejohn Coliseum</option>
+            <option value="kingstad">Doug Kingsmore Stadium</option>
+            <option value="riggs">Riggs Field </option>
+        </select>
+        <br /> <br /> <br /> <br /> <br /> <br />
+        <input type="submit" value="Add Event" />
+    </form>
+</body>
 </html>

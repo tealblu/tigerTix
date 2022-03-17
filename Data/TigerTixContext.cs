@@ -11,6 +11,7 @@ namespace TigerTix.Web.Data
     public class TigerTixContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Event> Events { get; set; } // new code!
 
         private readonly IConfiguration _config;
 
