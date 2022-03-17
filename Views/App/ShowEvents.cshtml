@@ -1,4 +1,4 @@
-﻿@model IEnumerable<User>
+﻿@model IEnumerable<Event>
     <style>
     body {
         margin: 0;
@@ -42,12 +42,11 @@
 </ul>
 
 <h1>Users</h1>
-
 <div>
     <u1>
         @foreach (var u in Model)
                 {
-                    <li>@u.FirstName</li>
+                    <li>@u.title, @u.desc, @u.date</li>
                 }
     </u1>
 </div>

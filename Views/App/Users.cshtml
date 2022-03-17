@@ -1,0 +1,75 @@
+﻿@model IndexViewModel
+@{ 
+    ViewBag.Title = "Users Submission";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TigerTix: @ViewBag.Title</title>
+    <style>
+        body {
+            margin: 0;
+            background-color:lavender;
+        }
+
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+
+        li {
+          float: left;
+        }
+
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        li a:hover {
+          background-color: #111;
+        }
+
+        div {
+            margin: 10px;
+        }
+    </style>
+</head>
+    <body>
+        <ul>
+            <li><a href="/App/#home">Events</a></li>\
+            <li><a href="/App/ShowEvents">Show Events</a></li>
+            <li><a href="/App/Users">Users</a></li>
+            <li><a href="/App/ShowUsers">Show Users</a></li>
+        </ul>
+   
+        <div>
+            <h1>TigerTix User Submissions</h1>
+
+            <form method="post">
+                <label>Username:</label>
+                <br />
+                <input type="text" name="username" />
+                <br />
+                <label>Firstname:</label>
+                <br />
+                <input type="text" name="firstname" />
+                <br />
+                <label>Lastname:</label>
+                <br />
+                <input type="text" name="lastname" />
+                <br />
+                <input type="submit" value="Store Name" />
+            </form>
+        </div>
+
+
+    </body>
+</html>
