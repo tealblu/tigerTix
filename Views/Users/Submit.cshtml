@@ -1,0 +1,34 @@
+﻿@{ 
+    ViewBag.Title = "User Submission";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
+    <body>
+        <h1>TigerTix User Submissions</h1>
+
+        <form method="post">
+            <label>Username:</label>
+            <br />
+            <input type="text" name="username" />
+            <br />
+            <br />
+            <label>Firstname:</label>
+            <br />
+            <input type="text" name="firstname" />
+            <br />
+            <br />
+            <label>Lastname:</label>
+            <br />
+            <input type="text" name="lastname" />
+            <br />
+            <br />
+            <br />
+            <input type="submit" value="Store Name" />
+        </form>
+    </body>
+</html>

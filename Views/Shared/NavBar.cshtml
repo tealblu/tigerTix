@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+            #navbar_body {
+                margin: 0;
+                background-color:lavender;
+            }
+
+            #navbar_ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+              background-color: #333;
+            }
+
+            #navbar_li {
+              float: left;
+            }
+
+            #navbar_li a {
+              display: block;
+              color: white;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+            }
+
+            #navbar_li a:hover {
+              background-color: #111;
+            }
+
+            #default_div {
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body id="navbar_body">
+        <ul id="navbar_ul">
+            <li id="navbar_li"><a href="/App/#home">Home</a></li>
+            <li id="navbar_li"><a href="/Events/Submit">Events</a></li>
+            <li id="navbar_li"><a href="/Events/Index">Show Events</a></li>
+            <li id="navbar_li"><a href="/Users/Submit">Users</a></li>
+            <li id="navbar_li"><a href="/Users/Index">Show Users</a></li>
+        </ul>
+        <div id="default_div">
+            @RenderBody()
+        </div>
+    </body>
+</html>

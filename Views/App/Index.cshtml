@@ -1,82 +1,15 @@
 ﻿@model IndexViewModel
-@{
-    ViewBag.Title = "Event Submission";
-
+@{ 
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/NavBar.cshtml";
 }
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>TigerTix: @ViewBag.Title</title>
-    <style>
-    body {
-        margin: 0;
-        background-color:lavender;
-    }
-
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #333;
-    }
-
-    li {
-      float: left;
-    }
-
-    li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    li a:hover {
-      background-color: #111;
-    }
-
-    div {
-        margin: 10px;
-    }
-    </style>
 </head>
-<body>
-    <ul>
-        <li><a href="/App/#home">Events</a></li>\
-        <li><a href="/App/ShowEvents">Show Events</a></li>
-        <li><a href="/App/Users">Users</a></li>
-        <li><a href="/App/ShowUsers">Show Users</a></li>
-    </ul>
-   
-    <div>
-        <h1>TigerTix Event Submission</h1>
-        <form method="post">
-            <label>Event Title:</label>
-            <br />
-            <input type="text" name="title" />
-            <br /> <br />
-            <label>Description:</label>
-            <br />
-            <input type="text" name="desc" size=100 />
-            <br /> <br />
-            <label>Date:</label>
-            <br />
-            <input type="date" name="date" />
-            <br /> <br />
-            <label>Venue:</label>
-            <br />
-            <select name="venue" id="venues">
-                <option value="memstad">Memorial Stadium</option>
-                <option value="liljohn">Littlejohn Coliseum</option>
-                <option value="kingstad">Doug Kingsmore Stadium</option>
-                <option value="riggs">Riggs Field </option>
-            </select>
-            <br /> <br /> <br /> <br /> <br /> <br />
-            <input type="submit" value="Add Event" />
-        </form>
-    </div>
-</body>
+    <body>
+        <h1>Home Page</h1>
+    </body>
 </html>
