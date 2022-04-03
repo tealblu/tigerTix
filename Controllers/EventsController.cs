@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TigerTix.Web.Data;
 using TigerTix.Web.Data.Entities;
@@ -20,9 +21,8 @@ namespace TigerTix.Web.Controllers
 
         public IActionResult Index()
         {
-            //LINQ Query
             var results = from e in _eventRepository.GetAllEvents() select e;
-            return View(results.ToList());
+            return View(results);
         }
 
         public IActionResult Submit()
@@ -30,13 +30,45 @@ namespace TigerTix.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Submit(Event e) 
+        // HTTP Request Handeling //
+
+        [HttpGet("/events")]
+        public IActionResult GetEvents(int id)
         {
-            _eventRepository.SaveEvent(e);
-            _eventRepository.SaveAll();
+            if (id != 0)
+            {
+                var ev = _eventRepository.GetDetails(id);
+                return Ok(ev);
+            } else
+            {
+                var results = from e in _eventRepository.GetAllEvents() select e;
+                return Ok(results.ToList());
+            }
+        }
+
+        [HttpPost("/events")]
+        public IActionResult Submit(Event e)
+        {
+            _eventRepository.AddEvent(e);
 
             return View();
+        }
+
+        [HttpDelete("/events/{eventId}:id")]
+        public IActionResult Delete(int eventId)
+        {
+            _eventRepository.DeleteEvent(eventId);
+
+            return View("submit");
+        }
+
+
+        [HttpDelete("/events/DeleteAll")]
+        public IActionResult DeleteAll()
+        {
+            _eventRepository.DeleteAll();
+
+            return View("submit");
         }
     }
 }

@@ -6,41 +6,85 @@
 }
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
 
-<head>
-    <title>TigerTix: @ViewBag.Title</title>
-</head>
-<body>
-    <h1>TigerTix Event Submission</h1>
+    <body>
+        <h1>TigerTix Event Submission</h1>
 
-    <form method="post">
-        <label>Event Title:</label>
+        <form method="post" action="/events">
+            <label>Event Title:</label>
+            <br />
+            <input type="text" name="title" />
+            <br />
+            <br />
+            <label>Description:</label>
+            <br />
+            <input type="text" name="desc" size=100 />
+            <br />
+            <br />
+            <label>Date:</label>
+            <br />
+            <input type="date" name="date" />
+            <br />
+            <br />
+            <label>Venue:</label>
+            <br />
+            <select name="venue" id="venues">
+                <option value="memstad">Memorial Stadium</option>
+                <option value="liljohn">Littlejohn Coliseum</option>
+                <option value="kingstad">Doug Kingsmore Stadium</option>
+                <option value="riggs">Riggs Field </option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <input type="submit" value="Add Event" />
+        </form>
+
         <br />
-        <input type="text" name="title" />
+        <button onclick="
+            fetch('/events/DeleteAll', {
+                method: 'DELETE',
+            })
+        ">
+            Delete All
+        </button>
+
         <br />
         <br />
-        <label>Description:</label>
-        <br />
-        <input type="text" name="desc" size=100 />
-        <br />
-        <br />
-        <label>Date:</label>
-        <br />
-        <input type="date" name="date" />
-        <br />
-        <br />
-        <label>Venue:</label>
-        <br />
-        <select name="venue" id="venues">
-            <option value="memstad">Memorial Stadium</option>
-            <option value="liljohn">Littlejohn Coliseum</option>
-            <option value="kingstad">Doug Kingsmore Stadium</option>
-            <option value="riggs">Riggs Field </option>
-        </select>
+        <input type="text" id="eventId" />
+        <button onclick="
+            fetch(`/events/${document.getElementById('eventId').value}:id`, {
+                method: 'DELETE',
+            })
+        ">
+            Delete by Id
+        </button>
+
         <br />
         <br />
+        <button onclick="
+            fetch(`/events/?id=${document.getElementById('eventId').value}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(eventsList => console.log(eventsList))
+        ">
+            Get event details by id to dev Console
+        </button>
+
         <br />
-        <input type="submit" value="Add Event" />
-    </form>
-</body>
+        <br />
+        <button onclick="
+            fetch('/events', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(eventsList => console.log(eventsList))
+        ">
+            Get All to dev Console
+        </button>
+    </body>
 </html>

@@ -11,7 +11,7 @@
     <body>
         <h1>TigerTix User Submissions</h1>
 
-        <form method="post">
+        <form method="post" action="/users">
             <label>Username:</label>
             <br />
             <input type="text" name="username" />
@@ -28,7 +28,51 @@
             <br />
             <br />
             <br />
-            <input type="submit" value="Store Name" />
+            <input type="submit" value="Add User" />
         </form>
+
+        <br />
+        <button onclick="
+            fetch('/users/DeleteAll', {
+                method: 'DELETE',
+            })
+        ">
+            Delete All
+        </button>
+
+        <br />
+        <br />
+        <input type="text" id="userId" />
+        <button onclick="
+            fetch(`/users/${document.getElementById('userId').value}:id`, {
+                method: 'DELETE',
+            })
+        ">
+            Delete by Id
+        </button>
+
+        <br />
+        <br />
+        <button onclick="
+            fetch(`/users/?id=${document.getElementById('userId').value}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(usersList => console.log(usersList))
+        ">
+            Get user details by id to dev Console
+        </button>
+
+        <br />
+        <br />
+        <button onclick="
+            fetch('/users', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(usersList => console.log(usersList))
+        ">
+            Get All to dev Console
+        </button>
     </body>
 </html>

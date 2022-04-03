@@ -30,13 +30,45 @@ namespace TigerTix.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Submit(User user)
+        // HTTP Request Handeling //
+        [HttpGet("/users")]
+        public IActionResult GetEvents(int id)
         {
-            _userRepository.SaveUser(user);
-            _userRepository.SaveAll();
+            if (id != 0)
+            {
+                var ev = _userRepository.GetDetails(id);
+                return Ok(ev);
+            }
+            else
+            {
+                var results = from u in _userRepository.GetAllUsers() select u;
+                return Ok(results.ToList());
+            }
+        }
+
+        [HttpPost("/users")]
+        public IActionResult Submit(User u)
+        {
+            _userRepository.AddUser(u);
 
             return View();
+        }
+
+        [HttpDelete("/users/{userId}:id")]
+        public IActionResult Delete(int userId)
+        {
+            _userRepository.DeleteUser(userId);
+
+            return View("submit");
+        }
+
+
+        [HttpDelete("/users/DeleteAll")]
+        public IActionResult DeleteAll()
+        {
+            _userRepository.DeleteAll();
+
+            return View("submit");
         }
     }
 }
