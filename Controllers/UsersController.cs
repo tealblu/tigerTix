@@ -31,13 +31,14 @@ namespace TigerTix.Web.Controllers
         }
 
         // HTTP Request Handeling //
+
         [HttpGet("/users")]
-        public IActionResult GetEvents(int id)
+        public IActionResult GetUsers(int id)
         {
             if (id != 0)
             {
-                var ev = _userRepository.GetDetails(id);
-                return Ok(ev);
+                var u = _userRepository.GetDetails(id);
+                return Ok(u);
             }
             else
             {
@@ -62,6 +63,13 @@ namespace TigerTix.Web.Controllers
             return View("submit");
         }
 
+        [HttpPut("/users/{userId}:id")]
+        public IActionResult UpdateUser(int userId, string username, string firstname, string lastname)
+        {
+            _userRepository.UpdateUser(userId, username, firstname, lastname);
+
+            return View("submit");
+        }
 
         [HttpDelete("/users/DeleteAll")]
         public IActionResult DeleteAll()

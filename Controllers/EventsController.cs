@@ -62,6 +62,13 @@ namespace TigerTix.Web.Controllers
             return View("submit");
         }
 
+        [HttpPut("/events/{eventId}:id")]
+        public IActionResult UpdateEvent(int eventId, string title, string desc, string date, string venue, string owner)
+        {
+            _eventRepository.UpdateEvent(eventId, title, desc, date, venue, owner);
+
+            return View("submit");
+        }
 
         [HttpDelete("/events/DeleteAll")]
         public IActionResult DeleteAll()

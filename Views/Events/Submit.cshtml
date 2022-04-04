@@ -44,6 +44,23 @@
         </form>
 
         <br />
+        <input type="text" id="eventId" />
+        <button onclick="
+            let id = document.getElementById('eventId').value
+            let title = document.getElementsByName('title')[0].value
+            let desc = document.getElementsByName('desc')[0].value
+            let date = document.getElementsByName('date')[0].value
+            let venue = document.getElementsByName('venue')[0].value
+            let owner = 'NONE'
+            fetch(`/events/${id}:id?title=${title}&desc=${desc}&date=${date}&venue=${venue}&owner=${owner}`, {
+                method: 'PUT',
+            })
+        ">
+            Update by Id
+        </button>
+
+        <br />
+        <br />
         <button onclick="
             fetch('/events/DeleteAll', {
                 method: 'DELETE',
@@ -54,9 +71,8 @@
 
         <br />
         <br />
-        <input type="text" id="eventId" />
         <button onclick="
-            fetch(`/events/${document.getElementById('eventId').value}:id`, {
+            fetch(`/events/?id=${document.getElementById('eventId').value}`, {
                 method: 'DELETE',
             })
         ">

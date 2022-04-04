@@ -51,6 +51,19 @@ namespace TigerTix.Web.Data
             _context.SaveChanges();
         }
 
+        // Update User
+        public void UpdateUser(int userId, string username, string firstname, string lastname)
+        {
+            User u = new User();
+            u.Id = userId;
+            u.UserName = username;
+            u.FirstName = firstname;
+            u.LastName = lastname;
+
+            _context.Update(u);
+            _context.SaveChanges();
+        }
+
         // Get User Details
         public User GetDetails(int id)
         {

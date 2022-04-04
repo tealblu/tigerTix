@@ -9,6 +9,7 @@ namespace TigerTix.Web.Data
         void AddUser(User u);
         void DeleteUser(int id);
         void DeleteAll();
+        public void UpdateUser(int userId, string username, string firstname, string lastname);
         public User GetDetails(int id);
     }
 }

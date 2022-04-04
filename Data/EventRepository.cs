@@ -52,6 +52,21 @@ namespace TigerTix.Web.Data
             _context.SaveChanges();
         }
 
+        // Update Event
+        public void UpdateEvent(int eventId, string title, string desc, string date, string venue, string owner)
+        {
+            Event ev = new Event();
+            ev.Id = eventId;
+            ev.title = title;
+            ev.desc = desc;
+            ev.date = date;
+            ev.venue = venue;
+            ev.owner = owner;
+
+            _context.Update(ev);
+            _context.SaveChanges();
+        }
+
         // Get Event Details
         public Event GetDetails(int id)
         {

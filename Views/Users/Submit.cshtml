@@ -32,6 +32,21 @@
         </form>
 
         <br />
+        <input type="text" id="userId" />
+        <button onclick="
+            let id = document.getElementById('userId').value
+            let username = document.getElementsByName('username')[0].value
+            let firstname = document.getElementsByName('firstname')[0].value
+            let lastname = document.getElementsByName('lastname')[0].value
+            fetch(`/users/${id}:id?username=${username}&firstname=${firstname}&lastname=${lastname}`, {
+                method: 'PUT',
+            })
+        ">
+            Update by Id
+        </button>
+
+        <br />
+        <br />
         <button onclick="
             fetch('/users/DeleteAll', {
                 method: 'DELETE',
@@ -42,7 +57,6 @@
 
         <br />
         <br />
-        <input type="text" id="userId" />
         <button onclick="
             fetch(`/users/${document.getElementById('userId').value}:id`, {
                 method: 'DELETE',

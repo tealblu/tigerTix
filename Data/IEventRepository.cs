@@ -9,6 +9,7 @@ namespace TigerTix.Web.Data
         void AddEvent(Event ev);
         void DeleteEvent(int id);
         void DeleteAll();
+        public void UpdateEvent(int eventId, string title, string desc, string date, string venue, string owner);
         Event GetDetails(int id);
     }
 }
