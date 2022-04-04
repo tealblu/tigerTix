@@ -32,7 +32,13 @@
         </form>
 
         <br />
+        <br />
+        <label>Id:</label>
+        <br />
         <input type="text" id="userId" />
+                
+        <br />
+        <br />
         <button onclick="
             let id = document.getElementById('userId').value
             let username = document.getElementsByName('username')[0].value
@@ -45,6 +51,25 @@
             Update by Id
         </button>
 
+        <button onclick="
+            fetch(`/users/?id=${document.getElementById('userId').value}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(usersList => document.getElementById('output').innerHTML = usersList)
+        ">
+            Get user details by id
+        </button>
+
+        <button onclick="
+            fetch(`/users/${document.getElementById('userId').value}:id`, {
+                method: 'DELETE',
+            })
+        ">
+            Delete by Id
+        </button>
+
+        <br />
         <br />
         <br />
         <button onclick="
@@ -58,35 +83,20 @@
         <br />
         <br />
         <button onclick="
-            fetch(`/users/${document.getElementById('userId').value}:id`, {
-                method: 'DELETE',
-            })
-        ">
-            Delete by Id
-        </button>
-
-        <br />
-        <br />
-        <button onclick="
-            fetch(`/users/?id=${document.getElementById('userId').value}`, {
-                method: 'GET',
-            })
-            .then(response => response.text())
-            .then(usersList => console.log(usersList))
-        ">
-            Get user details by id to dev Console
-        </button>
-
-        <br />
-        <br />
-        <button onclick="
             fetch('/users', {
                 method: 'GET',
             })
             .then(response => response.text())
-            .then(usersList => console.log(usersList))
+            .then(usersList => document.getElementById('output').innerHTML = usersList)
         ">
-            Get All to dev Console
+            Get All
         </button>
+
+        <br />
+        <br />
+        <br />
+        <label>Temporary Ouput:</label>
+        <br />
+        <p id="output"></p>
     </body>
 </html>

@@ -32,10 +32,10 @@
             <label>Venue:</label>
             <br />
             <select name="venue" id="venues">
-                <option value="memstad">Memorial Stadium</option>
-                <option value="liljohn">Littlejohn Coliseum</option>
-                <option value="kingstad">Doug Kingsmore Stadium</option>
-                <option value="riggs">Riggs Field </option>
+                <option value="Memorial Stadium">Memorial Stadium</option>
+                <option value="Littlejohn Coliseum">Littlejohn Coliseum</option>
+                <option value="Doug Kingsmore Stadium">Doug Kingsmore Stadium</option>
+                <option value="Riggs Field">Riggs Field </option>
             </select>
             <br />
             <br />
@@ -44,7 +44,13 @@
         </form>
 
         <br />
+        <br />
+        <label>Id:</label>
+        <br />
         <input type="text" id="eventId" />
+
+        <br />
+        <br />
         <button onclick="
             let id = document.getElementById('eventId').value
             let title = document.getElementsByName('title')[0].value
@@ -59,6 +65,25 @@
             Update by Id
         </button>
 
+        <button onclick="
+            fetch(`/events/?id=${document.getElementById('eventId').value}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(eventsList => document.getElementById('output').innerHTML = eventsList)
+        ">
+            Get event details by id
+        </button>
+
+        <button onclick="
+            fetch(`/events/${document.getElementById('eventId').value}:id`, {
+                method: 'DELETE',
+            })
+        ">
+            Delete by Id
+        </button>
+
+        <br />
         <br />
         <br />
         <button onclick="
@@ -72,35 +97,20 @@
         <br />
         <br />
         <button onclick="
-            fetch(`/events/?id=${document.getElementById('eventId').value}`, {
-                method: 'DELETE',
-            })
-        ">
-            Delete by Id
-        </button>
-
-        <br />
-        <br />
-        <button onclick="
-            fetch(`/events/?id=${document.getElementById('eventId').value}`, {
-                method: 'GET',
-            })
-            .then(response => response.text())
-            .then(eventsList => console.log(eventsList))
-        ">
-            Get event details by id to dev Console
-        </button>
-
-        <br />
-        <br />
-        <button onclick="
             fetch('/events', {
                 method: 'GET',
             })
             .then(response => response.text())
-            .then(eventsList => console.log(eventsList))
+            .then(eventsList => document.getElementById('output').innerHTML = eventsList)
         ">
-            Get All to dev Console
+            Get All
         </button>
+
+        <br />
+        <br />
+        <br />
+        <label>Temporary Ouput:</label>
+        <br />
+        <p id="output"></p>
     </body>
 </html>
