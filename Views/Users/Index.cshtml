@@ -1,0 +1,32 @@
+﻿@model IEnumerable<User>
+@{ 
+    ViewBag.Title = "View Users";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+<html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
+
+    <body>
+        <h1 class="center">Users</h1>
+        <table class="center">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+
+            @foreach (var u in Model)
+                {
+                    <tr>
+                        <td>@u.Id</td>
+                        <td>@u.FirstName</td>
+                        <td>@u.LastName</td>
+                        <td>@u.UserName</td>
+                    </tr>
+                }
+        </table>
+    </body>
+</html>

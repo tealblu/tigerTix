@@ -5,11 +5,11 @@ namespace TigerTix.Web.Data
 {
     public interface IUserRepository
     {
-        void DeleteUser(User user);
         IEnumerable<User> GetAllUsers();
-        User GetUsersByID(int userID);
-        void SaveUser(User user);
-        void UpdateUser(User user);
-        bool SaveAll();
+        void AddUser(User u);
+        void DeleteUser(int id);
+        void DeleteAll();
+        public void UpdateUser(int userId, string username, string firstname, string lastname);
+        public User GetDetails(int id);
     }
 }

@@ -17,48 +17,60 @@ namespace TigerTix.Web.Data
         }
 
         // methods to create, read, update, and delete data in Events table
-        // save a event
-        public void SaveEvent(Event ev)
+
+        //  Returns all events
+        public IEnumerable<Event> GetAllEvents()
+        {
+            var events = from ev in _context.Events select ev;
+
+            return events.ToList();
+        }
+
+        // Add an event
+        public void AddEvent(Event ev)
         {
             _context.Add(ev);
             _context.SaveChanges();
         }
 
-       //  returns all events
-        public IEnumerable<Event> GetAllEvents()
+        // Delete a event
+        public void DeleteEvent(int id)
         {
-            var events = from u in _context.Events select u;
-
-            return events.ToList();
-        }
-
-        // return a single user by ID
-        /*public Event GetEventbyTitle(string eventTitle)
-        {
-            var event = (from u in _context.Events where u.title == eventTitle select u).FirstOrDefault();
-
-            return event;
-        } */
-
-        // Update a event
-        public void UpdateEvent(Event ev)
-        {
-            _context.Update(ev);
-            _context.SaveChanges();
-        }
-
-        // Delete a user
-        public void DeleteEvent(Event ev)
-        {
+            var ev = (from e in _context.Events where e.Id == id select e).FirstOrDefault();
             _context.Remove(ev);
             _context.SaveChanges();
         }
 
-        // Save All
-        public bool SaveAll()
+        // Delete All
+        public void DeleteAll()
         {
-            // Save changes returns the row of numbers affected
-            return _context.SaveChanges() > 0;
+            var events = from ev in _context.Events select ev;
+            foreach (var e in events)
+            {
+                _context.Remove(e);
+            }
+            _context.SaveChanges();
+        }
+
+        // Update Event
+        public void UpdateEvent(int eventId, string title, string desc, string date, string venue, string owner)
+        {
+            Event ev = new Event();
+            ev.Id = eventId;
+            ev.title = title;
+            ev.desc = desc;
+            ev.date = date;
+            ev.venue = venue;
+            ev.owner = owner;
+
+            _context.Update(ev);
+            _context.SaveChanges();
+        }
+
+        // Get Event Details
+        public Event GetDetails(int id)
+        {
+            return (from e in _context.Events where e.Id == id select e).FirstOrDefault();
         }
     }
 }

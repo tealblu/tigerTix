@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+            #navbar_body {
+                margin: 0;
+                background-color: #D8D8D8;
+            }
+
+            #navbar_ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+              background-color: #F56600;
+            }
+
+            #navbar_li {
+              float: left;
+            }
+
+            #navbar_li a {
+              display: block;
+              color: #522D80;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-weight: bold;
+              font-size: 18px;
+            }
+
+            #navbar_li a:hover {
+              background-color: #CC5100;
+            }
+
+            #default_div {
+                margin: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            table, th, td {
+                border:1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+            }
+            .center {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body id="navbar_body">
+        <ul id="navbar_ul">
+            <li id="navbar_li"><a href="/App/#home">Home</a></li>
+            <li id="navbar_li"><a href="/Events/Submit">Events</a></li>
+            <li id="navbar_li"><a href="/Events/Index">Show Events</a></li>
+            <li id="navbar_li"><a href="/Users/Submit">Users</a></li>
+            <li id="navbar_li"><a href="/Users/Index">Show Users</a></li>
+        </ul>
+        <div id="default_div">
+            @RenderBody()
+        </div>
+    </body>
+</html>

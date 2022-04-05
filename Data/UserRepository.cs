@@ -16,14 +16,8 @@ namespace TigerTix.Web.Data
         }
 
         // methods to create, read, update, and delete data in Users table
-        // save a user
-        public void SaveUser(User user)
-        {
-            _context.Add(user);
-            _context.SaveChanges();
-        }
 
-        // returns all users
+        //  Returns all users
         public IEnumerable<User> GetAllUsers()
         {
             var users = from u in _context.Users select u;
@@ -31,33 +25,49 @@ namespace TigerTix.Web.Data
             return users.ToList();
         }
 
-        // return a single user by ID
-        public User GetUsersByID(int userID)
+        // Add an user
+        public void AddUser(User u)
         {
-            var user = (from u in _context.Users where u.Id == userID select u).FirstOrDefault();
-
-            return user;
-        }
-
-        // Update a user
-        public void UpdateUser(User user)
-        {
-            _context.Update(user);
+            _context.Add(u);
             _context.SaveChanges();
         }
 
         // Delete a user
-        public void DeleteUser(User user)
+        public void DeleteUser(int id)
         {
-            _context.Remove(user);
+            var ev = (from u in _context.Users where u.Id == id select u).FirstOrDefault();
+            _context.Remove(ev);
             _context.SaveChanges();
         }
 
-        // Save All
-        public bool SaveAll()
+        // Delete All
+        public void DeleteAll()
         {
-            // Save changes returns the row of numbers affected
-            return _context.SaveChanges() > 0;
+            var users = from u in _context.Users select u;
+            foreach (var u in users)
+            {
+                _context.Remove(u);
+            }
+            _context.SaveChanges();
+        }
+
+        // Update User
+        public void UpdateUser(int userId, string username, string firstname, string lastname)
+        {
+            User u = new User();
+            u.Id = userId;
+            u.UserName = username;
+            u.FirstName = firstname;
+            u.LastName = lastname;
+
+            _context.Update(u);
+            _context.SaveChanges();
+        }
+
+        // Get User Details
+        public User GetDetails(int id)
+        {
+            return (from u in _context.Users where u.Id == id select u).FirstOrDefault();
         }
     }
 }

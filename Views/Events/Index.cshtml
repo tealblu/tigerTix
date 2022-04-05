@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Event>
+@{
+    ViewBag.Title = "View Events";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+<html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
+    <body>
+        <h1 class="center">Events</h1>
+        <table class="center">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Venue</th>
+                <th>Description</th>
+            </tr>
+
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.Id</td>
+                    <td>@u.title</td>
+                    <td>@u.date</td>
+                    <td>@u.venue</td>
+                    <td>@u.desc</td>
+                </tr>
+            }
+        </table>
+    </body>
+</html>

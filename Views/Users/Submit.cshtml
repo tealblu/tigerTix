@@ -1,0 +1,102 @@
+﻿@{ 
+    ViewBag.Title = "User Submission";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
+    <body>
+        <h1>TigerTix User Submissions</h1>
+
+        <form method="post" action="/users">
+            <label>Username:</label>
+            <br />
+            <input type="text" name="username" />
+            <br />
+            <br />
+            <label>Firstname:</label>
+            <br />
+            <input type="text" name="firstname" />
+            <br />
+            <br />
+            <label>Lastname:</label>
+            <br />
+            <input type="text" name="lastname" />
+            <br />
+            <br />
+            <br />
+            <input type="submit" value="Add User" />
+        </form>
+
+        <br />
+        <br />
+        <label>Id:</label>
+        <br />
+        <input type="text" id="userId" />
+                
+        <br />
+        <br />
+        <button onclick="
+            let id = document.getElementById('userId').value
+            let username = document.getElementsByName('username')[0].value
+            let firstname = document.getElementsByName('firstname')[0].value
+            let lastname = document.getElementsByName('lastname')[0].value
+            fetch(`/users/${id}:id?username=${username}&firstname=${firstname}&lastname=${lastname}`, {
+                method: 'PUT',
+            })
+        ">
+            Update by Id
+        </button>
+
+        <button onclick="
+            fetch(`/users/?id=${document.getElementById('userId').value}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(usersList => document.getElementById('output').innerHTML = usersList)
+        ">
+            Get user details by id
+        </button>
+
+        <button onclick="
+            fetch(`/users/${document.getElementById('userId').value}:id`, {
+                method: 'DELETE',
+            })
+        ">
+            Delete by Id
+        </button>
+
+        <br />
+        <br />
+        <br />
+        <button onclick="
+            fetch('/users/DeleteAll', {
+                method: 'DELETE',
+            })
+        ">
+            Delete All
+        </button>
+
+        <br />
+        <br />
+        <button onclick="
+            fetch('/users', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(usersList => document.getElementById('output').innerHTML = usersList)
+        ">
+            Get All
+        </button>
+
+        <br />
+        <br />
+        <br />
+        <label>Temporary Ouput:</label>
+        <br />
+        <p id="output"></p>
+    </body>
+</html>

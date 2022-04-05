@@ -1,0 +1,116 @@
+﻿@model IndexViewModel
+@{
+    ViewBag.Title = "Event Submission";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
+
+    <body>
+        <h1>TigerTix Event Submission</h1>
+
+        <form method="post" action="/events">
+            <label>Event Title:</label>
+            <br />
+            <input type="text" name="title" />
+            <br />
+            <br />
+            <label>Description:</label>
+            <br />
+            <input type="text" name="desc" size=100 />
+            <br />
+            <br />
+            <label>Date:</label>
+            <br />
+            <input type="date" name="date" />
+            <br />
+            <br />
+            <label>Venue:</label>
+            <br />
+            <select name="venue" id="venues">
+                <option value="Memorial Stadium">Memorial Stadium</option>
+                <option value="Littlejohn Coliseum">Littlejohn Coliseum</option>
+                <option value="Doug Kingsmore Stadium">Doug Kingsmore Stadium</option>
+                <option value="Riggs Field">Riggs Field </option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <input type="submit" value="Add Event" />
+        </form>
+
+        <br />
+        <br />
+        <label>Id:</label>
+        <br />
+        <input type="text" id="eventId" />
+
+        <br />
+        <br />
+        <button onclick="
+            let id = document.getElementById('eventId').value
+            let title = document.getElementsByName('title')[0].value
+            let desc = document.getElementsByName('desc')[0].value
+            let date = document.getElementsByName('date')[0].value
+            let venue = document.getElementsByName('venue')[0].value
+            let owner = 'NONE'
+            fetch(`/events/${id}:id?title=${title}&desc=${desc}&date=${date}&venue=${venue}&owner=${owner}`, {
+                method: 'PUT',
+            })
+        ">
+            Update by Id
+        </button>
+
+        <button onclick="
+            fetch(`/events/?id=${document.getElementById('eventId').value}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(eventsList => document.getElementById('output').innerHTML = eventsList)
+        ">
+            Get event details by id
+        </button>
+
+        <button onclick="
+            fetch(`/events/${document.getElementById('eventId').value}:id`, {
+                method: 'DELETE',
+            })
+        ">
+            Delete by Id
+        </button>
+
+        <br />
+        <br />
+        <br />
+        <button onclick="
+            fetch('/events/DeleteAll', {
+                method: 'DELETE',
+            })
+        ">
+            Delete All
+        </button>
+
+        <br />
+        <br />
+        <button onclick="
+            fetch('/events', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(eventsList => document.getElementById('output').innerHTML = eventsList)
+        ">
+            Get All
+        </button>
+
+        <br />
+        <br />
+        <br />
+        <label>Temporary Ouput:</label>
+        <br />
+        <p id="output"></p>
+    </body>
+</html>
