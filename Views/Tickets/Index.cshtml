@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Ticket>
+@{
+    ViewBag.Title = "View Tickets";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+<html>
+<head>
+    <title>TigerTix: @ViewBag.Title</title>
+</head>
+
+<body>
+    <h1 class="center">Tickets</h1>
+    <table class="center">
+        <tr>
+            <th>Id</th>
+            <th>name</th>
+        </tr>
+
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.name</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
