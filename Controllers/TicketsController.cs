@@ -10,7 +10,7 @@ using TigerTix.Web.ViewModels;
 
 namespace TigerTix.Web.Controllers
 {
-    public class TicketsController
+    public class TicketsController : Controller
     {
         private readonly ITicketRepository _ticketRepository;
         public TicketsController(ITicketRepository ticketRepository)
