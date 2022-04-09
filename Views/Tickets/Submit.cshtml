@@ -1,0 +1,117 @@
+﻿@model IndexViewModel
+@{
+    ViewBag.Title = "Ticket Submission";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
+
+    <body>
+        <h1>TigerTix Ticket Submission</h1>
+
+        <form method="post" action="/tickets">
+            <label>Ticket name:</label>
+            <br />
+            <input type="text" name="name" />
+            <br />
+            <br />
+            <label>Event ID:</label>
+            <br />
+            <input type="number" name="eventID"/>
+            <br />
+            <br />
+            <label>Seat Section:</label>
+            <br />
+            <input type="number" name="seatSection" />
+            <br />
+            <br />
+            <label>Seat Number:</label>
+            <br />
+            <input type="number" name="seatNumber" />
+            <br />
+            <br />
+            <label>Price in $:</label>
+            <br />
+            <input type="number" name="price" />
+            <br />
+            <br />
+            <br />
+            <input type="submit" value="Add Ticket" />
+        </form>
+
+        <br />
+        <br />
+        <label>Id:</label>
+        <br />
+        <input type="text" id="ticketId" />
+
+        <br />
+        <br />
+        <button onclick="
+            let id = document.getElementById('ticketId').value
+            let name = document.getElementsByName('name')[0].value
+            let eventId = document.getElementsByName('eventId').value
+            let ownerId = document.getElementsByName('ownerId').value
+            let price = document.getElementsByName('price').value
+            let seatSection = document.getElementsByName('seatSection').value
+            let seatNumber = document.getElementsByName('seatNumber').value
+            fetch(`/tickets/${id}:id?name=${name}&eventId=${eventId}&ownerId=${ownerId}&price=${price}&seatSection=${seatSection}&seatNumber=${seatNumber}`, {
+                method: 'PUT',
+            })
+        ">
+            Update by Id
+        </button>
+
+        <button onclick="
+            fetch(`/tickets/?id=${document.getElementById('ticketId').value}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(ticketsList => document.getElementById('output').innerHTML = ticketsList)
+        ">
+            Get ticket details by id
+        </button>
+
+        <button onclick="
+            fetch(`/tickets/${document.getElementById('ticketId').value}:id`, {
+                method: 'DELETE',
+            })
+        ">
+            Delete by Id
+        </button>
+
+        <br />
+        <br />
+        <br />
+        <button onclick="
+            fetch('/tickets/DeleteAll', {
+                method: 'DELETE',
+            })
+        ">
+            Delete All
+        </button>
+
+        <br />
+        <br />
+        <button onclick="
+            fetch('/tickets', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(ticketsList => document.getElementById('output').innerHTML = ticketsList)
+        ">
+            Get All
+        </button>
+
+        <br />
+        <br />
+        <br />
+        <label>Temporary Ouput:</label>
+        <br />
+        <p id="output"></p>
+    </body>
+</html>
