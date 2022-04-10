@@ -63,9 +63,9 @@ namespace TigerTix.Web.Controllers
         }
 
         [HttpPut("/tickets/{ticketId}:id")]
-        public IActionResult UpdateTicket(int Id, string name, int eventId, int ownerId, float price, int seatSection, int seatNumber)
+        public IActionResult UpdateTicket(int ticketId, string name, int eventId, int ownerId, float price, int seatSection, int seatNumber)
         {
-            _ticketRepository.UpdateTicket(Id, name, eventId, ownerId, price, seatSection, seatNumber);
+            _ticketRepository.UpdateTicket(ticketId, name, eventId, ownerId, price, seatSection, seatNumber);
 
             return View("submit");
         }
