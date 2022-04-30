@@ -16,6 +16,7 @@
                 <th>Date</th>
                 <th>Venue</th>
                 <th>Description</th>
+                <th>Owner</th>
             </tr>
 
             @foreach (var u in Model)
@@ -26,6 +27,7 @@
                     <td>@u.date</td>
                     <td>@u.venue</td>
                     <td>@u.desc</td>
+                    <td>@u.owner</td>
                     <td><a href="/events/EventDetails?id=@u.Id">View Event</a></td>
                 </tr>
             }

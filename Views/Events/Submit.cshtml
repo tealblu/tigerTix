@@ -37,6 +37,7 @@
                 <option value="Doug Kingsmore Stadium">Doug Kingsmore Stadium</option>
                 <option value="Riggs Field">Riggs Field </option>
             </select>
+            <input type='hidden' name='owner' value='' />
             <br />
             <br />
             <br />
@@ -57,7 +58,7 @@
             let desc = document.getElementsByName('desc')[0].value
             let date = document.getElementsByName('date')[0].value
             let venue = document.getElementsByName('venue')[0].value
-            let owner = 'NONE'
+            let owner = document.getElementsByName('owner')[0].value
             fetch(`/events/${id}:id?title=${title}&desc=${desc}&date=${date}&venue=${venue}&owner=${owner}`, {
                 method: 'PUT',
             })
@@ -112,5 +113,25 @@
         <label>Temporary Ouput:</label>
         <br />
         <p id="output"></p>
+
+        <script>
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+                }
+                return "";
+            }
+
+            document.getElementsByName('owner')[0].value = getCookie("userId")
+        </script>
     </body>
 </html>

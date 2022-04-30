@@ -31,7 +31,7 @@
               font-size: 18px;
             }
 
-            #navbar_li a:hover {
+            .dropdown:hover .dropbtn, #navbar_li a:hover {
               background-color: #CC5100;
             }
 
@@ -52,18 +52,68 @@
                 margin-right: auto;
                 text-align: center;
             }
+
+            .dropdown {
+              float: left;
+              overflow: hidden;
+            }
+
+            .dropdown .dropbtn {
+              display: block;
+              color: #522D80;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-weight: bold;
+              font-size: 18px;
+              border: none;
+              outline: none;
+              background-color: inherit;
+              font-family: inherit;
+              margin: 0;
+            }
+
+            .dropdown-content {
+              display: none;
+              position: absolute;
+              background-color: #f9f9f9;
+              min-width: 160px;
+              box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+              z-index: 1;
+            }
+
+            .dropdown-content a {
+              float: none;
+              color: black;
+              padding: 12px 16px;
+              text-decoration: none;
+              display: block;
+              text-align: left;
+            }
+
+            .dropdown:hover .dropdown-content {
+              display: block;
+
+            }
         </style>
     </head>
     <body id="navbar_body">
         <ul id="navbar_ul">
             <li id="navbar_li"><a href="/App/#home">Home</a></li>
-            <li id="navbar_li"><a href="/Events/Submit">Events</a></li>
-            <li id="navbar_li"><a href="/Events/Index">Show Events</a></li>
-            <li id="navbar_li"><a href="/Users/Submit">Users</a></li>
-            <li id="navbar_li"><a href="/Users/Index">Show Users</a></li>
-            <li id="navbar_li"><a href="/Tickets/Submit">Tickets</a></li>
-            <li id="navbar_li"><a href="/Tickets/Index">Show Tickets</a></li>
+            <li id="navbar_li"><a href="/Events/Index">Events</a></li>
+            <li id="navbar_li">
+             <div class="dropdown">
+                <button class="dropbtn">Admin 
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="/Users/Index">Show Users</a>
+                  <a href="/Tickets/Index">Show Tickets</a>
+                </div>
+              </div> 
+            </li>
         </ul>
+
         <div id="default_div">
             @RenderBody()
         </div>
@@ -95,6 +145,22 @@
 
             let navbar = document.getElementById("navbar_ul")
             if (loggedIn()){
+                let createEvent = document.createElement('li')
+                createEvent.id = "navbar_li"
+                let createEventLink = document.createElement('a')
+                createEventLink.text = "Create/Edit Event"
+                createEventLink.href = "/Events/Submit"
+                createEvent.append(createEventLink)
+                navbar.append(createEvent)
+
+                let createTicket = document.createElement('li')
+                createTicket.id = "navbar_li"
+                let createTicketLink = document.createElement('a')
+                createTicketLink.text = "Create/Edit Tickets"
+                createTicketLink.href = "/Tickets/Submit"
+                createTicket.append(createTicketLink)
+                navbar.append(createTicket)
+
                 let myTickets = document.createElement('li')
                 myTickets.id = "navbar_li"
                 let myTicketsLink = document.createElement('a')

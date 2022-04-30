@@ -13,14 +13,24 @@
     <table class="center">
         <tr>
             <th>Id</th>
-            <th>name</th>
+            <th>Event Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Seat Section</th>
+            <th>Seat Number</th>
+            <th>Owner Id</th>
         </tr>
 
         @foreach (var t in Model)
         {
             <tr>
                 <td>@t.Id</td>
+                <td>@t.eventID</td>
                 <td>@t.name</td>
+                <td>@t.price</td>
+                <td>@t.seatSection</td>
+                <td>@t.seatNumber</td>
+                <td>@t.ownerID</td>
             </tr>
         }
     </table>
