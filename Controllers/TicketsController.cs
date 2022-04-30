@@ -28,6 +28,10 @@ namespace TigerTix.Web.Controllers
         {
             return View();
         }
+        public IActionResult MyTickets()
+        {
+            return View();
+        }
 
         // HTTP Request Handeling //
 
@@ -44,6 +48,20 @@ namespace TigerTix.Web.Controllers
                 var results = from t in _ticketRepository.GetAllTickets() select t;
                 return Ok(results.ToList());
             }
+        }
+
+        [HttpGet("/tickets/{eventId}:eventId")]
+        public IActionResult GetTicketsForEvent(int eventId)
+        {
+            var results = _ticketRepository.GetAllForEvent(eventId);
+            return Ok(results.ToList());
+        }
+
+        [HttpGet("/tickets/{userId}:userId")]
+        public IActionResult GetTicketsForUser(int userId)
+        {
+            var results = _ticketRepository.GetAllForUser(userId);
+            return Ok(results.ToList());
         }
 
         [HttpPost("/tickets")]
@@ -66,6 +84,14 @@ namespace TigerTix.Web.Controllers
         public IActionResult UpdateTicket(int ticketId, string name, int eventId, int ownerId, float price, int seatSection, int seatNumber)
         {
             _ticketRepository.UpdateTicket(ticketId, name, eventId, ownerId, price, seatSection, seatNumber);
+
+            return View("submit");
+        }
+
+        [HttpPut("/tickets")]
+        public IActionResult BuyTicket(int ticketId, int ownerId)
+        {
+            _ticketRepository.BuyTicket(ticketId, ownerId);
 
             return View("submit");
         }

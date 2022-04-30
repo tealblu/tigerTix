@@ -18,7 +18,7 @@ namespace TigerTix.Web.Data
 
         // methods to create, read, update, and delete data in Tickets table
 
-        //  Returns all events
+        //  Returns all Tickets
         public IEnumerable<Ticket> GetAllTickets()
         {
             var tickets = from tick in _context.Tickets select tick;
@@ -26,14 +26,40 @@ namespace TigerTix.Web.Data
             return tickets.ToList();
         }
 
-        // Add an event
+        // Get all Tickets with given eventId
+        public IEnumerable<Ticket> GetAllForEvent(int eventId)
+        {
+            var tickets = from t in _context.Tickets where t.eventID == eventId && t.ownerID == 0 select t;
+
+            return tickets.ToList();
+        }
+
+        // Get all Tickets with given userId
+        public IEnumerable<Ticket> GetAllForUser(int userId)
+        {
+            var tickets = from t in _context.Tickets where t.ownerID == userId select t;
+
+            return tickets.ToList();
+        }
+
+        // Buy a ticket
+        public void BuyTicket(int ticketId, int ownerId)
+        {
+            var ticket = (from t in _context.Tickets where t.Id == ticketId select t).FirstOrDefault();
+            ticket.ownerID = ownerId;
+
+            _context.Update(ticket);
+            _context.SaveChanges();
+        }
+
+        // Add an Ticket
         public void AddTicket(Ticket tick)
         {
             _context.Add(tick);
             _context.SaveChanges();
         }
 
-        // Delete a event
+        // Delete a Ticket
         public void DeleteTicket(int id)
         {
             var tick = (from t in _context.Tickets where t.Id == id select t).FirstOrDefault();
@@ -52,7 +78,7 @@ namespace TigerTix.Web.Data
             _context.SaveChanges();
         }
 
-        // Update Event
+        // Update Ticket
         public void UpdateTicket(int Id, string name, int eventID, int ownerID, float price, int seatSection, int seatNumber)
         {
             Ticket t = new Ticket();
@@ -68,7 +94,7 @@ namespace TigerTix.Web.Data
             _context.SaveChanges();
         }
 
-        // Get Event Details
+        // Get Ticket Details
         public Ticket GetDetails(int id)
         {
             return (from t in _context.Tickets where t.Id == id select t).FirstOrDefault();

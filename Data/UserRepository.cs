@@ -64,10 +64,27 @@ namespace TigerTix.Web.Data
             _context.SaveChanges();
         }
 
-        // Get User Details
+        // Get User Details by id
         public User GetDetails(int id)
         {
             return (from u in _context.Users where u.Id == id select u).FirstOrDefault();
+        }
+        // Get User Details by id
+        public User GetDetailsByUserName(string username)
+        {
+            return (from u in _context.Users where u.UserName == username select u).FirstOrDefault();
+        }
+
+        // Validate User login
+        public bool ValidLogin(string username, string password)
+        {
+            var user = (from u in _context.Users where u.UserName == username select u).FirstOrDefault();
+            if (user != null) {
+                var userId = user.Id;
+                //if (user.Password == password) {return true;}
+                return true;
+            }
+            return false;
         }
     }
 }

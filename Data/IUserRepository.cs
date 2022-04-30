@@ -11,5 +11,7 @@ namespace TigerTix.Web.Data
         void DeleteAll();
         public void UpdateUser(int userId, string username, string firstname, string lastname);
         public User GetDetails(int id);
+        User GetDetailsByUserName(string username);
+        bool ValidLogin(string username, string password);
     }
 }

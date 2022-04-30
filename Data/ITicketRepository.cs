@@ -9,6 +9,9 @@ namespace TigerTix.Web.Data
     public interface ITicketRepository
     {
         IEnumerable<Ticket> GetAllTickets();
+        IEnumerable<Ticket> GetAllForEvent(int eventId);
+        IEnumerable<Ticket> GetAllForUser(int userId);
+        void BuyTicket(int ownerId, int ticketId);
         void AddTicket(Ticket tick);
         void DeleteTicket(int id);
         void DeleteAll();

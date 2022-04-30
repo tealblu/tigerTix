@@ -30,6 +30,11 @@ namespace TigerTix.Web.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         // HTTP Request Handeling //
 
         [HttpGet("/users")]
@@ -44,6 +49,21 @@ namespace TigerTix.Web.Controllers
             {
                 var results = from u in _userRepository.GetAllUsers() select u;
                 return Ok(results.ToList());
+            }
+        }
+
+        [HttpGet("/users/validLogin")]
+        public IActionResult ValidLogin(string username, string password)
+        {
+            var valid = _userRepository.ValidLogin(username, password);
+            if (valid)
+            {
+                var user = _userRepository.GetDetailsByUserName(username);
+                return Ok(user);
+            }
+            else
+            {
+                return StatusCode(401);
             }
         }
 

@@ -67,5 +67,61 @@
         <div id="default_div">
             @RenderBody()
         </div>
+
+        <script>
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+                }
+                return "";
+            }
+
+            function loggedIn(){
+                if (getCookie("userId") == ""){
+                    return false
+                } else {
+                    return true
+                }
+            }
+
+            let navbar = document.getElementById("navbar_ul")
+            if (loggedIn()){
+                let myTickets = document.createElement('li')
+                myTickets.id = "navbar_li"
+                let myTicketsLink = document.createElement('a')
+                myTicketsLink.text = "My Tickets"
+                myTicketsLink.href = "/Tickets/MyTickets"
+                myTickets.append(myTicketsLink)
+                navbar.append(myTickets)
+
+                let logout = document.createElement('li')
+                logout.id = "navbar_li"
+                let logoutButton = document.createElement('button')
+                logoutButton.innerHTML = "Logout"
+                logoutButton.onclick = function () {
+                    document.cookie = 'userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+                    location.reload()
+                }
+                logout.append(logoutButton)
+                navbar.append(logout)
+            } else {
+                let login = document.createElement('li')
+                login.id = "navbar_li"
+                let loginLink = document.createElement('a')
+                loginLink.text = "Login"
+                loginLink.href = "/Users/Login"
+                login.append(loginLink)
+                navbar.append(login)
+            }
+        </script>
     </body>
 </html>
