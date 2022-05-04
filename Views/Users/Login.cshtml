@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "User Login";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+
+<html>
+    <head>
+        <title>TigerTix: @ViewBag.Title</title>
+    </head>
+
+    <body>
+        <h1 class="center">User Login</h1>
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+        
+        <br />
+        <br />
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <br />
+        <br />
+        <button type="button" onclick="
+            let username = document.getElementsByName('uname')[0].value
+            let password = document.getElementsByName('psw')[0].value
+            fetch(`/users/validLogin?username=${username}&password=${password}`, 
+                {method: 'GET',}
+            )
+            .then(response => response.json())
+            .then(user => {
+                document.cookie = `userId=${user['id']}; path=/;`
+                location.href='/tickets/MyTickets'
+            })
+            .catch(error => {
+                alert('Failed to login')
+                document.cookie = 'userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+            })
+        ">
+            Login
+        </button>
+        <br />
+        <br />
+        <a href="/Users/Submit">Create Account</a>
+    </body>
+</html>

@@ -54,11 +54,11 @@
         <button onclick="
             let id = document.getElementById('ticketId').value
             let name = document.getElementsByName('name')[0].value
-            let eventId = document.getElementsByName('eventId').value
-            let ownerId = document.getElementsByName('ownerId').value
-            let price = document.getElementsByName('price').value
-            let seatSection = document.getElementsByName('seatSection').value
-            let seatNumber = document.getElementsByName('seatNumber').value
+            let eventId = document.getElementsByName('eventID')[0].value
+            let ownerId = '0'
+            let price = document.getElementsByName('price')[0].value
+            let seatSection = document.getElementsByName('seatSection')[0].value
+            let seatNumber = document.getElementsByName('seatNumber')[0].value
             fetch(`/tickets/${id}:id?name=${name}&eventId=${eventId}&ownerId=${ownerId}&price=${price}&seatSection=${seatSection}&seatNumber=${seatNumber}`, {
                 method: 'PUT',
             })

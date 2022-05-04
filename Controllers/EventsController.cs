@@ -30,6 +30,12 @@ namespace TigerTix.Web.Controllers
             return View();
         }
 
+        public IActionResult EventDetails(int id)
+        {
+            var results = _eventRepository.GetDetails(id);
+            return View(results);
+        }
+
         // HTTP Request Handeling //
 
         [HttpGet("/events")]

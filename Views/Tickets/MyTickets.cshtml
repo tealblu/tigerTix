@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "My Tickets";
+    Layout = "~/Views/Shared/NavBar.cshtml";
+}
+<html>
+<head>
+    <title>TigerTix: @ViewBag.Title</title>
+</head>
+
+<body>
+    <h1 class="center">My Tickets</h1>
+    <table class="center" id="tickets">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Seat Section</th>
+            <th>Seat Number</th>
+        </tr>
+    </table>
+
+    <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+            }
+            return "";
+        }
+
+        function makeTable(array) {
+            var table = document.getElementById('tickets')
+            for (var i = 0; i < array.length; i++) {
+                var row = document.createElement('tr');
+
+                var name = document.createElement('td');
+                name.textContent = array[i]["name"];
+                row.appendChild(name);
+
+                var price = document.createElement('td');
+                price.textContent = array[i]["price"];
+                row.appendChild(price);
+
+                var seatSection = document.createElement('td');
+                seatSection.textContent = array[i]["seatSection"];
+                row.appendChild(seatSection);
+
+                var seatNumber = document.createElement('td');
+                seatNumber.textContent = array[i]["seatNumber"];
+                row.appendChild(seatNumber);
+
+                table.appendChild(row);
+            }
+        }
+
+        let userId = getCookie('userId')
+        fetch(`/tickets/${userId}:userId`, {
+            method: 'GET',
+        })
+        .then(response => response.json())
+        .then(ticketsList => makeTable(ticketsList))
+    </script>
+</body>
+</html>
